@@ -28,6 +28,6 @@ Rounds will increase in difficulty.
 
 Rounds two will increase the tiles to be matched on the game board. Player will need to remember initial word after matching 16 pairs from 32 tiles.
 
- Round three will ask the player to remember an additional word and have the player match 16 pairs from 32 tiles.
+Round three will ask the player to remember an additional word and have the player match 16 pairs from 32 tiles.
 
- Round four will ask the player to remember both words and match 32 pairs.
+Round four will ask the player to remember both words and match 32 pairs.
