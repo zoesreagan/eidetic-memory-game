@@ -10,9 +10,9 @@ nav {
 
 }
 
-#game-container {
+.grid {
   padding: 0;
-  margin: 0;
+  margin: 0 auto;
   display: flex;
   height: 90%;
   background-color: rgba(181, 207, 233, 0.62);
@@ -21,16 +21,19 @@ nav {
 }
 
 
-.tile-front {
-  background-color: rgb(215, 140, 97);
-  margin: 40px 20px;
+.card {
+  margin: 5px;
+  background-color: #6589F9);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
   padding: 5px;
-  height: 100px;
-  width: 100px;
+  height: 150px;
+  width: 150px;
   display: flex;
 }
 
-.tile-back {
+/* .tile-back {
   background-color: rgb(188, 219, 216);
   border: 2px black solid;
   margin: 40px 20px;
@@ -38,10 +41,10 @@ nav {
   height: 100px;
   width: 100px;
   display: flex;
-}
+} */
 
 /* MODAL STYLING */
-.modal {
+/* .modal {
   display: none;
   position: fixed;
   z-index: 1;
@@ -74,4 +77,4 @@ nav {
   color: black;
   text-decoration: none;
   cursor: pointer;
-}
+} */

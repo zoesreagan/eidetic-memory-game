@@ -1,75 +1,90 @@
 console.log("this is an eidetic memory game");
+//DISPLAY 16 CARDS, each with a different value.
+// If clicked, the tile will flip, displaying an image.
+// The player will then select second tile.
+// If the tiles are a match, they will remain face up.
+// If they are not a match, the tiles will flip back over.
+
+const tilesArray = [{
+  'name' : 'bees',
+  'img' : 'img/bees.jpg',
+},
+{
+  'name': 'butterfly',
+  'img' : 'img/butterfly.jpeg',
+},
+{
+  'name' : 'caterpillar',
+  'img' : 'img/caterpillar.jpeg',
+},
+{
+  'name' : 'elephant',
+  'img' : 'img/elephant.jpg',
+},
+{
+  'name' : 'heron',
+  'img' : 'img/heron.jpg',
+},
+{
+  'name' : 'horse',
+  'img' : 'img/horse.jpg',
+},
+{
+  'name' : 'ladybug',
+  'img' : 'img/ladybug.jpg',
+},
+{
+  'name' : 'loon',
+  'img' : 'img/loon.jpg',
+},
+{
+  'name' : 'praying-mantis',
+  'img' : 'img/prayingmantis.jpg',
+},
+{
+  'name' : 'seal',
+  'img' : 'img/seal.jpg',
+},
+{
+  'name' : 'snails',
+  'img' : 'img/snails.jpg',
+},
+{
+  'name' : 'swan',
+  'img' : 'img/swan.jpg',
+},
+];
+
+//now need to display all twelve tiles
+const game = document.getElementById('game');
 
 
-
-//hides gameboard until start game function is called by clicking start button
-$(".tile-front").hide();
-$(".tile-back").hide();
-
-const createBoard = (num) => {
-  for (let i = 0; i < 8; i++) {
-      const $tile = $('<div>');
-      $tile.addClass('tile-back')
-      $tile.appendTo($("#game-container"))
-      $tile.on('click', () => {
-        console.log("click");
-        $tile.removeClass('tile-back').addClass('tile-front');
-      })
-    }
-//add event listener to the tile
-//event.currentTarget will 'grab' the tile we clicked
-//make square switch classes
-//need to remove start game button once clicked
-  $('button').remove()
-}
-
-//start game button
-const $start = $('#start')
-$start.on('click', createBoard);
+//create a section with a class of 'grid'
+const grid = document.createElement('section');
+grid.setAttribute('class', 'grid');
 
 
-If clicked, the tile will flip, displaying a character.
-The player will then select second tile.
-If the tiles are a match, they will remain face up.
-If they are not a match, the tiles will flip back over.
+//append the 'grid' section to the game div;
+game.appendChild(grid);
 
+//Now we create a div for each item in the 'tiles' array:
+  //first create a div
+tilesArray.forEach(item => {
+  const tile = document.createElement('div');
 
+  //apply card class to that div
+  tile.classList.add('card');
 
+  //set the data-name attribute of the div to the tilesArray
+  tile.dataset.name = item.name
 
+  //apply the background immage of the div to the tilesArray image
+  tile.style.backgroundImage = `url(${item.img})`;
 
+  //finally, append the div to the grid section
+  grid.appendChild(tile);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-//need to add "back" of tiles to the game-container
-// const addTile = (num) => {
-//   const $tile = $('<div>');
-//
-//   $('.tile-back').on('click', (e) => {
-//     console.log("square clicked");
-//     $(e.currentTarget).addClass('tile-front')
-  // });
-//now we need to add event listener to the tiles so they display
-//tile-back class (like flipping the card)
-// }
-//
-// const createBoard = (numberOfTiles) => {
-//   for (let i = 0; i < numberOfTiles; i++) {
-//     addTile(i);
-//
-//   }
-// }
-
+});
 
 
 
