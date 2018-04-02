@@ -55,8 +55,8 @@ const tilesArray = [{
 },
 ];
 
-//now need to display all twelve tiles
-const game = document.getElementById('game');
+// //now need to display all twelve tiles
+// const game = document.getElementById('game');
 
 
 //create a section with a class of 'grid'
@@ -64,12 +64,21 @@ const grid = document.createElement('section');
 grid.setAttribute('class', 'grid');
 
 
+//now we need to duplicate the first tilesArray so that the can find a match
+//this will require a loop as well.
+
+let gameGrid = tilesArray.concat(tilesArray);
+
+//dont forget to randomize the array upon each refresh
+
+gameGrid.sort(() => 0.5 - Math.random());
+
 //append the 'grid' section to the game div;
 game.appendChild(grid);
 
 //Now we create a div for each item in the 'tiles' array:
   //first create a div
-tilesArray.forEach(item => {
+gameGrid.forEach(item => {
   const tile = document.createElement('div');
 
   //apply card class to that div
@@ -87,6 +96,19 @@ tilesArray.forEach(item => {
 });
 
 
+//SELECTING CARDS
+//add an event listener to each div on the gameGrid
+
+grid.addEventListener('click', function (event){
+  //the event target is our clicked tile
+  let clicked = event.target;
+
+  //but we don't want the grid itsels to be selected, only the divs
+  if (clicked.nodName === 'SECTION') {return;}
+
+   //add class to divs clicked
+  clicked.classList.add('selected');
+});
 
 
 

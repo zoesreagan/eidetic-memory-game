@@ -33,6 +33,11 @@ nav {
   display: flex;
 }
 
+.selected {
+  border: 2px solid blue;
+
+}
+
 /* .tile-back {
   background-color: rgb(188, 219, 216);
   border: 2px black solid;
