@@ -11,8 +11,8 @@ nav {
 }
 
 .grid {
-  padding: 0;
-  margin: 0 auto;
+  padding: 10px;
+  margin: 10px auto;
   display: flex;
   height: 90%;
   background-color: rgba(181, 207, 233, 0.62);
@@ -20,33 +20,55 @@ nav {
   flex-wrap: wrap;
 }
 
-
 .card {
+  position: relative;
+  transition: all .3s linear;
+  transform-style: preserve-3d;
   margin: 5px;
-  background-color: #6589F9);
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center center;
+  display: flex;
+}
+
+.card,
+.back,
+.front {
   padding: 5px;
   height: 150px;
   width: 150px;
-  display: flex;
+}
+
+
+.back,
+.front {
+  position: absolute;
+  backface-visibility: hidden;
+}
+
+.front {
+  z-index: 2;
+  background-color: rgb(238, 161, 117)
+}
+
+.back {
+  margin: 0 auto;
+  transform: rotateY(180deg);
+  background-color: rgba(181, 207, 233, 0.62);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .selected {
-  border: 2px solid blue;
+  transform: rotateY(180deg);
 
 }
 
-/* .tile-back {
-  background-color: rgb(188, 219, 216);
-  border: 2px black solid;
-  margin: 40px 20px;
-  padding: 5px;
-  height: 100px;
-  width: 100px;
-  display: flex;
-} */
+.match .front {
+  display: none !important;
+}
+
+footer {
+
+}
 
 /* MODAL STYLING */
 /* .modal {
