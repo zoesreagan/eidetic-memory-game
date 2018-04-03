@@ -5,6 +5,11 @@ console.log("this is an eidetic memory game");
 // If the tiles are a match, they will remain face up.
 // If they are not a match, the tiles will flip back over.
 
+//start button that begins the round after player has read the instructions
+//start button will ultimately trigger the modal and display the board.
+
+
+//create an array of tiles with name and img attached
 const tilesArray = [{
   'name' : 'bees',
   'img' : 'img/bees.jpg',
@@ -73,136 +78,120 @@ let previousTarget = null;
 let delay = 1200;
 
 //CREATING THE BOARD
+//when player clicks the start button, it will launch the board
+$('button').on('click', () => {
+  // console.log("buttonworks");
 
-// display all twelve tiles
-const game = document.getElementById('game');
+    // display all twelve tiles
+    const game = document.getElementById('game');
 
+    //create a section with a class of 'grid'
+    const grid = document.createElement('section');
+    grid.setAttribute('class', 'grid');
 
-//create a section with a class of 'grid'
-const grid = document.createElement('section');
-grid.setAttribute('class', 'grid');
-
-//append the 'grid' section to the game div;
-game.appendChild(grid);
-
-
-//Now we create a div for each item in the 'tiles' array:
-
-//first create a div
-gameGrid.forEach(item => {
-  const { name, img } = item;
-
-  const tile = document.createElement('div');
-
-  //apply card class to that div
-  tile.classList.add('card');
-
-  //set the data-name attribute of the div to the tilesArray
-  tile.dataset.name = name;
-
-  const front = document.createElement('div');
-  front.classList.add('front');
-
-  //apply the background immage of the div to the back of tilesArray image
-  const back = document.createElement('div');
-  back.classList.add('back');
-  back.style.backgroundImage = `url(${item.img})`;
-
-  //finally, append the div to the grid section
-  grid.appendChild(tile);
-  tile.appendChild(front);
-  tile.appendChild(back);
-
-});
+    //append the 'grid' section to the game div;
+    game.appendChild(grid);
 
 
+    //Now we create a div for each item in the 'tiles' array:
+    //first create a div
+    gameGrid.forEach(item => {
+      const { name, img } = item;
 
-//create a function for matching elements.
-const match = () => {
-  const selected = document.querySelectorAll('.selected');
-  selected.forEach(tile => {
-    tile.classList.add('match');
-  });
-};
+      const tile = document.createElement('div');
+
+      //apply card class to that div
+      tile.classList.add('card');
+
+      //set the data-name attribute of the div to the tilesArray
+      tile.dataset.name = name;
+
+      const front = document.createElement('div');
+      front.classList.add('front');
+
+      //apply the background immage of the div to the back of tilesArray image
+      const back = document.createElement('div');
+      back.classList.add('back');
+      back.style.backgroundImage = `url(${item.img})`;
+
+      //finally, append the div to the grid section
+      grid.appendChild(tile);
+      tile.appendChild(front);
+      tile.appendChild(back);
+
+    });
+
+    //create a function for matching elements.
+    const match = () => {
+      const selected = document.querySelectorAll('.selected');
+      selected.forEach(tile => {
+        tile.classList.add('match');
+      });
+    };
+
+    //creat a function to reset guesses after two, even if no match
+    const resetGuesses = () => {
+      firstGuess = '';
+      secondGuess = '';
+      count = 0;
+      previousTarget = null
+
+      var selected = document.querySelectorAll('.selected');
+      selected.forEach(tile => {
+        tile.classList.remove('selected')
+      });
+    };
 
 
-//creat a function to reset guesses after two, even if no match
-const resetGuesses = () => {
-  firstGuess = '';
-  secondGuess = '';
-  count = 0;
-  previousTarget = null
+    //SELECTING CARDS
+    //add an event listener to each div on the gameGrid
 
-  var selected = document.querySelectorAll('.selected');
-  selected.forEach(tile => {
-    tile.classList.remove('selected')
-  });
-};
+    grid.addEventListener('click', event => {
 
+    //the event target is our clicked tile
+    //but we don't want the grid itself to be selected, only the divs
 
+      const clicked = event.target;
+      if (clicked.nodeName === 'SECTION' ||
+          clicked === previousTarget ||
+          clicked.parentNode.classList.contains('selected')
+      ) {
+        return;
+      }
 
-//SELECTING CARDS
-//add an event listener to each div on the gameGrid
+    //We need to modify the event listener to have if statement that counts to TWO
+    //and adds the 'selected' class to two cards
 
-grid.addEventListener('click', event => {
-
-  //the event target is our clicked tile
-  const clicked = event.target;
-  if (clicked.nodeName === 'SECTION' ||
-      clicked === previousTarget ||
-      clicked.parentNode.classList.contains('selected')
-  ) {
-    return;
-  }
-
-  if (count < 2) {
-    count++;
-    if (count === 1) {
-      firstGuess = clicked.parentNode.dataset.name;
-      console.log(firstGuess);
-      clicked.parentNode.classList.add('selected');
-    } else {
-      //assign secondGuess
-      secondGuess = clicked.parentNode.dataset.name;
-      console.log(secondGuess);
-      clicked.parentNode.classList.add('selected')
-    }
+      if (count < 2) {
+        count++;
+        if (count === 1) {
+          firstGuess = clicked.parentNode.dataset.name;
+          console.log(firstGuess);
+          clicked.parentNode.classList.add('selected');
+        } else {
+          //assign secondGuess
+          secondGuess = clicked.parentNode.dataset.name;
+          console.log(secondGuess);
+          clicked.parentNode.classList.add('selected')
+        }
 
     //if both guesses are not empty...
-    if (firstGuess && secondGuess) {
-      //and the frist guess matches the second match...
-      if (firstGuess === secondGuess) {
-        setTimeout(match, delay);
+
+        if (firstGuess && secondGuess) {
+
+    //and the first guess matches the second guess...
+
+          if (firstGuess === secondGuess) {
+
+      //run a setTimeout with the match function and designated delay
+            setTimeout(match, delay);
+          }
+          setTimeout(resetGuesses, delay)
+        }
+        previousTarget = clicked;
       }
-      setTimeout(resetGuesses, delay)
-    }
-    previousTarget = clicked;
-  }
-
+    });
 });
-
-  //but we don't want the grid itself to be selected, only the divs
-
-
-   //add class to divs clicked
-
-
-
-//ONLY ALLOW TWO CARDS TO BE SELECTED
-
-
-
-
-//need to modify the event listener to have if statement that counts to TWO
-//and adds the 'seclected' class to two cards
-
-
-
-
-
-
-
-
 
 
 

@@ -22,6 +22,8 @@ Once all eight pairs are matched, the board will disappear and will be replaced 
 The player must select the word that appeared initially in order to "win" the round. If the player does not select the correct word, the game restarts with the original word and 16 tiles.
 
 
+!(text)[link]
+
 --Increased functionality--
 
 Rounds will increase in difficulty.
