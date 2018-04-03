@@ -8,6 +8,29 @@ console.log("this is an eidetic memory game");
 //start button that begins the round after player has read the instructions
 //start button will ultimately trigger the modal and display the board.
 
+//need to create a modal that appears after start button is clicked
+//tie it to event listener
+//needs to time out after 3 seconds and call the getRound1 function
+
+// get the modal
+const modal = document.querySelector(".modal");
+
+//get the modal to trigger
+const trigger = document.querySelector(".trigger");
+
+//create function to call the MODAL
+const toggleModal = () => {
+  modal.classList.toggle("show-modal");
+};
+//add event listener to 'listen' for player click
+trigger.addEventListener('click', toggleModal);
+
+//setTimeout to make modal disappear after set time
+setTimeout(toggleModal, 5000);
+
+
+
+
 
 //create an array of tiles with name and img attached
 const tilesArray = [{
@@ -63,11 +86,9 @@ const tilesArray = [{
 
 //now we need to duplicate the first tilesArray so that the can find a match
 //this will require a loop as well.
-
 const gameGrid = tilesArray.concat(tilesArray);
 
 //dont forget to randomize the array upon each refresh
-
 gameGrid.sort(() => 0.5 - Math.random());
 
 
@@ -79,8 +100,11 @@ let delay = 1200;
 
 //CREATING THE BOARD
 //when player clicks the start button, it will launch the board
-$('button').on('click', () => {
+//when user clicks start button, open mdal
+$('.start').on('click', () => {
   // console.log("buttonworks");
+
+    // modal.style.display = "block";
 
     // display all twelve tiles
     const game = document.getElementById('game');
@@ -193,21 +217,5 @@ $('button').on('click', () => {
     });
 });
 
-
-
-//need to create a modal that appears after start button is clicked
-//tie it to event listener
-//needs to time out after 3 seconds and call the getRound1 function
-
-//get the modal
-// const modal = document.getElemenByID("modal")
-// //get the close button on modal
-// const span = document.getElementByClass("close")[0];
-//
-// //when user clicks start button, open Modal
-// modal.onclick = function () {
-//   modal.style.display = "block";
-// }
 // span.onclick = function () {
 //   modal.style.display = "none";
-// }
