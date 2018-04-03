@@ -15,22 +15,22 @@ console.log("this is an eidetic memory game");
 // get the modal
 const modal = document.querySelector(".modal");
 
-//get the modal to trigger
-const trigger = document.querySelector(".trigger");
-
 //create function to call the MODAL
 const toggleModal = () => {
   modal.classList.toggle("show-modal");
 };
+
 //add event listener to 'listen' for player click
-trigger.addEventListener('click', toggleModal);
-
+//trigger the modal upon click
 //setTimeout to make modal disappear after set time
-setTimeout(toggleModal, 5000);
+//remove "start game" button so the player cannot add another modal/board
 
-
-
-
+$('.start').on('click', () => {
+    console.log("buttonworks");
+    toggleModal();
+    setTimeout(toggleModal, 5000);
+    $('.start').remove();
+  });
 
 //create an array of tiles with name and img attached
 const tilesArray = [{
@@ -216,6 +216,3 @@ $('.start').on('click', () => {
       }
     });
 });
-
-// span.onclick = function () {
-//   modal.style.display = "none";
