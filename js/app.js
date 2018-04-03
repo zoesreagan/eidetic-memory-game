@@ -105,7 +105,6 @@ const tilesArray = [{
 // },
 ];
 
-
 //duplicate the first tilesArray so that the array has an available match
 //this will require a loop
 const gameGrid = tilesArray.concat(tilesArray);
@@ -258,7 +257,21 @@ const toggleModalThree = () => {
   modalThree.classList.toggle("show-modalThree")
 };
 
+const windowOnClick = () => {
+  if (event.target === modalThree) {
+    toggleModalThree
+  }
+}
+
 $('.wordTwo').on('click', () => {
   toggleModalThree();
   toggleModalTwo();
 });
+
+$('.play-again').on('click', () => {
+  //loop back through another round
+})
+
+$('.no').on('click', () => {
+  //redirect to about page
+})
