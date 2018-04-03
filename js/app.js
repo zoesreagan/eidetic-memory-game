@@ -8,13 +8,22 @@ console.log("this is an eidetic memory game");
 //tie it to event listener
 //needs to time out after 3 seconds and call the getRound1 function
 
-// get the modal
-const modal = document.querySelector(".modal");
+// get the first modal
+const modalOne = document.querySelector(".modalOne");
 
 //create function to call the MODAL
-const toggleModal = () => {
-  modal.classList.toggle("show-modal");
+const toggleModalOne = () => {
+  modalOne.classList.toggle("show-modalOne");
 };
+
+//do the same for second modal
+const modalTwo = document.querySelector(".modalTwo")
+
+const toggleModalTwo = () => {
+  modalTwo.classList.toggle("show-modalTwo")
+}
+
+
 
 //add event listener to 'listen' for player click
 //trigger the modal upon click
@@ -22,8 +31,8 @@ const toggleModal = () => {
 //remove "start game" button so the player cannot add another modal/board
 
 $('.start').on('click', () => {
-    toggleModal();
-    setTimeout(toggleModal, 1000);
+    toggleModalOne();
+    setTimeout(toggleModalOne, 1000);
     $('.start').remove();
   });
 
@@ -48,7 +57,7 @@ const randomWord2 = wordArray[Math.floor(Math.random()*wordArray.length)];
 const randomWord3 = wordArray[Math.floor(Math.random()*wordArray.length)];
 
 //print random word to Modal using append
-$('.modal-content').append(randomWord);
+$('.modal-contentOne').append(randomWord);
 
 //card game functionality
 //DISPLAY 16 CARDS, each with a different value.
@@ -66,46 +75,46 @@ const tilesArray = [{
   'name': 'butterfly',
   'img' : 'img/butterfly.jpeg',
 },
-{
-  'name' : 'caterpillar',
-  'img' : 'img/caterpillar.jpeg',
-},
-{
-  'name' : 'elephant',
-  'img' : 'img/elephant.jpg',
-},
-{
-  'name' : 'heron',
-  'img' : 'img/heron.jpg',
-},
-{
-  'name' : 'horse',
-  'img' : 'img/horse.jpg',
-},
-{
-  'name' : 'ladybug',
-  'img' : 'img/ladybug.jpg',
-},
-{
-  'name' : 'loon',
-  'img' : 'img/loon.jpg',
-},
-{
-  'name' : 'praying-mantis',
-  'img' : 'img/prayingmantis.jpg',
-},
-{
-  'name' : 'seal',
-  'img' : 'img/seal.jpg',
-},
-{
-  'name' : 'snails',
-  'img' : 'img/snails.jpg',
-},
-{
-  'name' : 'swan',
-  'img' : 'img/swan.jpg',
-},
+// {
+//   'name' : 'caterpillar',
+//   'img' : 'img/caterpillar.jpeg',
+// },
+// {
+//   'name' : 'elephant',
+//   'img' : 'img/elephant.jpg',
+// },
+// {
+//   'name' : 'heron',
+//   'img' : 'img/heron.jpg',
+// },
+// {
+//   'name' : 'horse',
+//   'img' : 'img/horse.jpg',
+// },
+// {
+//   'name' : 'ladybug',
+//   'img' : 'img/ladybug.jpg',
+// },
+// {
+//   'name' : 'loon',
+//   'img' : 'img/loon.jpg',
+// },
+// {
+//   'name' : 'praying-mantis',
+//   'img' : 'img/prayingmantis.jpg',
+// },
+// {
+//   'name' : 'seal',
+//   'img' : 'img/seal.jpg',
+// },
+// {
+//   'name' : 'snails',
+//   'img' : 'img/snails.jpg',
+// },
+// {
+//   'name' : 'swan',
+//   'img' : 'img/swan.jpg',
+// },
 ];
 
 
@@ -174,8 +183,8 @@ const match = () => {
   const selected = document.querySelectorAll('.selected');
   selected.forEach(tile => {
     tile.classList.add('match');
-    if($('div.card.match').length === 24) {
-      toggleModal();
+    if($('div.card.match').length === 4) {
+      toggleModalTwo();
     }
   });
 }
