@@ -1,12 +1,11 @@
 console.log("this is an eidetic memory game");
 
-
 //start button that begins the round after player has read the instructions
 //start button will ultimately trigger the modal and display the board.
 
 //need to create a modal that appears after start button is clicked
 //tie it to event listener
-//needs to time out after 3 seconds and call the getRound1 function
+//needs to time out after 3 seconds and call the gameGrid function
 
 // get the first modal
 const modalOne = document.querySelector(".modalOne");
@@ -16,14 +15,6 @@ const toggleModalOne = () => {
   modalOne.classList.toggle("show-modalOne");
 };
 
-//do the same for second modal
-const modalTwo = document.querySelector(".modalTwo")
-
-const toggleModalTwo = () => {
-  modalTwo.classList.toggle("show-modalTwo")
-}
-
-
 
 //add event listener to 'listen' for player click
 //trigger the modal upon click
@@ -32,7 +23,7 @@ const toggleModalTwo = () => {
 
 $('.start').on('click', () => {
     toggleModalOne();
-    setTimeout(toggleModalOne, 1000);
+    setTimeout(toggleModalOne, 3000);
     $('.start').remove();
   });
 
@@ -52,18 +43,15 @@ const wordArray = [
 //choose random word from above wordArray (need to figure out how not to repeat words)
 const randomWord = wordArray[Math.floor(Math.random()*wordArray.length)];
 
-const randomWord2 = wordArray[Math.floor(Math.random()*wordArray.length)];
-
-const randomWord3 = wordArray[Math.floor(Math.random()*wordArray.length)];
-
-//print random word to Modal using append
+//print random word to first modal using append
 $('.modal-contentOne').append(randomWord);
 
+
 //card game functionality
-//DISPLAY 16 CARDS, each with a different value.
+//Display 24 tiles, each with a different value.
 // If clicked, the tile will flip, displaying an image.
 // The player will then select second tile.
-// If the tiles are a match, they will remain face up.
+// If the tiles are a match, they disappear from play.
 // If they are not a match, the tiles will flip back over.
 
 //create an array of tiles with name and img attached
@@ -118,11 +106,11 @@ const tilesArray = [{
 ];
 
 
-//now we need to duplicate the first tilesArray so that the can find a match
-//this will require a loop as well.
+//duplicate the first tilesArray so that the array has an available match
+//this will require a loop
 const gameGrid = tilesArray.concat(tilesArray);
 
-//dont forget to randomize the array upon each refresh
+//dont forget to randomize the array upon each refresh of the page
 gameGrid.sort(() => 0.5 - Math.random());
 
 let firstGuess = '';
@@ -142,17 +130,14 @@ grid.setAttribute('class', 'grid');
 game.appendChild(grid);
 
 
-
 //CREATING THE BOARD
 //when player clicks the start button, it will launch the board
 //when user clicks start button, open modal
 $('.start').on('click', () => {
-  // console.log("buttonworks");
     //Now we create a div for each item in the 'tiles' array:
     //first create a div
     gameGrid.forEach(item => {
       const { name, img } = item;
-
       const tile = document.createElement('div');
 
       //apply card class to that div
@@ -227,36 +212,53 @@ grid.addEventListener('click', event => {
       firstGuess = clicked.parentNode.dataset.name;
       console.log(firstGuess);
       clicked.parentNode.classList.add('selected');
-    } else {
-      //assign secondGuess
-      secondGuess = clicked.parentNode.dataset.name;
-      console.log(secondGuess);
-      clicked.parentNode.classList.add('selected')
-    }
+        } else {
+          //assign secondGuess
+          secondGuess = clicked.parentNode.dataset.name;
+          console.log(secondGuess);
+          clicked.parentNode.classList.add('selected')
+        }
 
     //if both guesses are not empty...
     if (firstGuess && secondGuess) {
       //and the first guess matches the second guess...
-      if (firstGuess === secondGuess) {
+        if (firstGuess === secondGuess) {
         //run a setTimeout with the match function and designated delay
-        setTimeout(match, delay);
+          setTimeout(match, delay);
+        }
+      setTimeout(resetGuesses, delay);
       }
-        setTimeout(resetGuesses, delay);
-      }
-        previousTarget = clicked;
+    previousTarget = clicked;
     }
-
 });
 
+//MOAR MODALZ
+//second modal called once all matches are found
+
+const modalTwo = document.querySelector(".modalTwo")
+
+const toggleModalTwo = () => {
+  modalTwo.classList.toggle("show-modalTwo")
+};
+
+//create two more random words to add to modalTwo
+const randomWord2 = wordArray[Math.floor(Math.random()*wordArray.length)];
+const randomWord3 = wordArray[Math.floor(Math.random()*wordArray.length)];
+
+//print random word and two others to second modal buttons
+$('.wordOne').append(randomWord2);
+$('.wordTwo').append(randomWord);
+$('.wordThree').append(randomWord3);
 
 
-//need to write logic to find if card.match divs equal 24 (all matched pairs)
-//once all matches have been found, need to call toggleModal function
+//create congrats modal if player choses correct word
+const modalThree = document.querySelector(".modalThree")
 
+const toggleModalThree = () => {
+  modalThree.classList.toggle("show-modalThree")
+};
 
-
-
-
-//modal needs to display text and call word from array
-
-//how do we find if all matches have been found?
+$('.wordTwo').on('click', () => {
+  toggleModalThree();
+  toggleModalTwo();
+});

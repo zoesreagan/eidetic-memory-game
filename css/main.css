@@ -75,7 +75,8 @@ footer {
 
 /* MODAL STYLING */
 .modalOne,
-.modalTwo {
+.modalTwo,
+.modalThree {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -91,7 +92,8 @@ footer {
 }
 
 .modal-contentOne,
-.modal-contentTwo {
+.modal-contentTwo,
+.modal-contentThree {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -103,7 +105,8 @@ footer {
 }
 
 .show-modalOne,
-.show-modalTwo {
+.show-modalTwo,
+.show-modalThree {
   opacity: 1;
   visibility: visible;
   transform: scale(1.0);
