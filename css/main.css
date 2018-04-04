@@ -10,6 +10,14 @@ nav {
 
 }
 
+#scoreboard {
+  height: auto;
+  width: auto;
+  display: flex-wrap;
+  align-content: space-between;
+  margin: 5px;
+
+}
 
 .card {
   position: relative;

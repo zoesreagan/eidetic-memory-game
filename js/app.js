@@ -101,6 +101,7 @@ let secondGuess = '';
 let count = 0;
 let previousTarget = null;
 let delay = 1000;
+let score = 0;
 
 // display all twelve tiles
 const game = document.getElementById('game');
@@ -115,7 +116,6 @@ game.appendChild(grid);
 
 //CREATING THE BOARD
 //Now we create a div for each item in the 'tiles' array:
-//first create a div
 
   const createBoard = () => {
 
@@ -145,7 +145,8 @@ game.appendChild(grid);
   };
 
 
-//create a function for matching elements// include a function that checks number of matched pairs
+//create a function for matching elements
+// include a function that checks number of matched pairs
 //and if the length of matched pairs equals total pairs available, trigger modal
 const match = () => {
   const selected = document.querySelectorAll('.selected');
@@ -190,7 +191,6 @@ grid.addEventListener('click', event => {
     return;
   }
 
-
 //We need to modify the event listener to have if statement that counts to TWO
 //and adds the 'selected' class to two cards
   if (count < 2) {
@@ -208,22 +208,29 @@ grid.addEventListener('click', event => {
 
     //if both guesses are not empty...
     if (firstGuess && secondGuess) {
+
       //and the first guess matches the second guess...
         if (firstGuess === secondGuess) {
+
         //run a setTimeout with the match function and designated delay
           setTimeout(match, delay);
+          score++;
+          $('h2').text('Scoreboard: ' + score);
         }
       setTimeout(resetGuesses, delay);
       }
     previousTarget = clicked;
     }
-})
+  })
 };
+
+
 
 //trigger the modal upon click
 //setTimeout to make modal disappear after set time
 //remove "start game" button so the player cannot add another modal/board
 //all methods called upon .start click
+
 $('.start').on('click', () => {
   toggleModalOne();
   setTimeout(toggleModalOne, 1000);
@@ -234,7 +241,6 @@ $('.start').on('click', () => {
   $('.modal-contentOne').append(randomWord1);
   $('.start').remove();
 });
-
 
 //MOAR MODALZ
 //second modal called once all matches are found
@@ -257,27 +263,21 @@ const toggleModalThree = () => {
   modalThree.classList.toggle("show-modalThree")
 };
 
-const windowOnClick = () => {
-  if (event.target === modalThree) {
-    toggleModalThree
-  }
-}
-
 //create click event for correct button selection
 $('.wordTwo').on('click', () => {
   $('div.card.match').detach();
+  score++;
+  $('h2').text('Scoreboard: ' + score);
   toggleModalThree();
   toggleModalTwo();
 });
 
 
-
+//Round 2
 
 let randomWord2 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
 
-//Round 2
 $('.play-again').on('click', () => {
-  // $('.modal-contentOne').html(<h1>);
   setTimeout(toggleModalThree, 200);
   toggleModalOne();
   setTimeout(toggleModalOne, 3000);
