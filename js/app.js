@@ -16,32 +16,29 @@ const toggleModalOne = () => {
 };
 
 //need to add random word to Modal for player to remember
-const wordArray = [
+
+//create an object? two sets of words...
+const wordArray1 = [
     "breathe",
     "shoulder",
     "revoke",
-    "application",
-    "toast",
-    "affinity",
-    "replace",
-    "delicate",
+    "application"
 ];
 
-//choose random word from above wordArray (need to figure out how not to repeat words)
-const randomWord = wordArray[Math.floor(Math.random()*wordArray.length)];
+const wordArray2 = [
+  "toast",
+  "affinity",
+  "replace",
+  "delicate"
+]
 
-//print random word to first modal using append
-$('.modal-contentOne').append(randomWord);
+//choose random word from above wordArray (need to figure out how not to repeat words)
+const randomWord1 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
 
 
 //card game functionality
-//Display 24 tiles, each with a different value.
-// If clicked, the tile will flip, displaying an image.
-// The player will then select second tile.
-// If the tiles are a match, they disappear from play.
-// If they are not a match, the tiles will flip back over.
-
 //create an array of tiles with name and img attached
+
 const tilesArray = [{
   'name' : 'bees',
   'img' : 'img/bees.jpg',
@@ -185,12 +182,14 @@ grid.addEventListener('click', event => {
 //the event target is our clicked tile
 //but we don't want the grid itself to be selected, only the divs
   const clicked = event.target;
-  if (clicked.nodeName === ('section') ||
+
+  if (clicked.parentNode.classList.contains('.grid') ||
       clicked === previousTarget ||
       clicked.parentNode.classList.contains('selected')
   ) {
     return;
   }
+
 
 //We need to modify the event listener to have if statement that counts to TWO
 //and adds the 'selected' class to two cards
@@ -227,11 +226,12 @@ grid.addEventListener('click', event => {
 //all methods called upon .start click
 $('.start').on('click', () => {
   toggleModalOne();
-  setTimeout(toggleModalOne, 3000);
+  setTimeout(toggleModalOne, 1000);
   createBoard();
   match();
   resetGuesses();
   gameGridListener();
+  $('.modal-contentOne').append(randomWord1);
   $('.start').remove();
 });
 
@@ -245,18 +245,14 @@ const toggleModalTwo = () => {
   modalTwo.classList.toggle("show-modalTwo")
 };
 
-//create two more random words to add to modalTwo
-// const randomWord2 = ;
-// const randomWord3 = wordArray[Math.floor(Math.random()*wordArray.length)];
 
 //print random word and two others to second modal buttons
-$('.wordOne').append(wordArray[Math.floor(Math.random()*wordArray.length)]);
-$('.wordTwo').append(randomWord);
-$('.wordThree').append(wordArray[Math.floor(Math.random()*wordArray.length)]);
+$('.wordOne').append(wordArray2[Math.floor(Math.random()*wordArray2.length)]);
+$('.wordTwo').append(randomWord1);
+$('.wordThree').append(wordArray2[Math.floor(Math.random()*wordArray2.length)]);
 
 //create congrats modal if player choses correct word
 const modalThree = document.querySelector(".modalThree")
-
 const toggleModalThree = () => {
   modalThree.classList.toggle("show-modalThree")
 };
@@ -267,13 +263,21 @@ const windowOnClick = () => {
   }
 }
 
+//create click event for correct button selection
 $('.wordTwo').on('click', () => {
   $('div.card.match').detach();
   toggleModalThree();
   toggleModalTwo();
 });
 
+
+
+
+let randomWord2 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
+
+//Round 2
 $('.play-again').on('click', () => {
+  // $('.modal-contentOne').html(<h1>);
   setTimeout(toggleModalThree, 200);
   toggleModalOne();
   setTimeout(toggleModalOne, 3000);

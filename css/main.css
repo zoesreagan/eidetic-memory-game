@@ -11,6 +11,15 @@ nav {
 }
 
 
+.card {
+  position: relative;
+  transition: all .3s linear;
+  transform-style: preserve-3d;
+  margin: 5px;
+  display: flex;
+  pointer-events: all;
+}
+
 .grid {
   padding: 10px;
   margin: 10px auto;
@@ -19,15 +28,7 @@ nav {
   background-color: rgba(181, 207, 233, 0.62);
   justify-content: center;
   flex-wrap: wrap;
-
-}
-
-.card {
-  position: relative;
-  transition: all .3s linear;
-  transform-style: preserve-3d;
-  margin: 5px;
-  display: flex;
+  pointer-events: none;
 }
 
 .card,
@@ -88,7 +89,6 @@ footer {
   visibility: hidden;
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
-
 }
 
 .modal-contentOne,
@@ -112,3 +112,6 @@ footer {
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
+
+
+.
