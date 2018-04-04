@@ -19,10 +19,10 @@ const toggleModalOne = () => {
 
 //create an object? two sets of words...
 const wordArray1 = [
-    "breathe",
-    "shoulder",
-    "revoke",
-    "application"
+  "breathe",
+  "shoulder",
+  "revoke",
+  "application"
 ];
 
 const wordArray2 = [
@@ -238,7 +238,7 @@ $('.start').on('click', () => {
   match();
   resetGuesses();
   gameGridListener();
-  $('.modal-contentOne').append(randomWord1);
+  $('p').append(randomWord1);
   $('.start').remove();
 });
 
@@ -279,6 +279,7 @@ let randomWord2 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
 
 $('.play-again').on('click', () => {
   setTimeout(toggleModalThree, 200);
+  $('p').text(randomWord2);
   toggleModalOne();
   setTimeout(toggleModalOne, 3000);
   createBoard();
@@ -291,3 +292,19 @@ $('.play-again').on('click', () => {
 // $('.no').on('click', () => {
 //   //redirect to about page
 // })
+
+
+//Round 3
+
+// let randomWord3 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
+//
+// $('.play-again').on('click', () => {
+//   setTimeout(toggleModalThree, 200);
+//   $('p').text(randomWord3);
+//   toggleModalOne();
+//   setTimeout(toggleModalOne, 3000);
+//   createBoard();
+//   match();
+//   resetGuesses();
+//   gameGridListener();
+// });
