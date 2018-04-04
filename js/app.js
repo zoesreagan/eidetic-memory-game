@@ -15,19 +15,6 @@ const toggleModalOne = () => {
   modalOne.classList.toggle("show-modalOne");
 };
 
-
-//add event listener to 'listen' for player click
-//trigger the modal upon click
-//setTimeout to make modal disappear after set time
-//remove "start game" button so the player cannot add another modal/board
-
-$('.start').on('click', () => {
-    toggleModalOne();
-    setTimeout(toggleModalOne, 3000);
-    $('.start').remove();
-  });
-
-
 //need to add random word to Modal for player to remember
 const wordArray = [
     "breathe",
@@ -130,11 +117,11 @@ game.appendChild(grid);
 
 
 //CREATING THE BOARD
-//when player clicks the start button, it will launch the board
-//when user clicks start button, open modal
-$('.start').on('click', () => {
-    //Now we create a div for each item in the 'tiles' array:
-    //first create a div
+//Now we create a div for each item in the 'tiles' array:
+//first create a div
+
+  const createBoard = () => {
+
     gameGrid.forEach(item => {
       const { name, img } = item;
       const tile = document.createElement('div');
@@ -158,7 +145,7 @@ $('.start').on('click', () => {
       tile.appendChild(front);
       tile.appendChild(back);
     });
-});
+  };
 
 
 //create a function for matching elements// include a function that checks number of matched pairs
@@ -191,6 +178,8 @@ const resetGuesses = () => {
 
 //SELECTING CARDS
 //add an event listener to each div on the gameGrid
+const gameGridListener = () => {
+
 grid.addEventListener('click', event => {
 
 //the event target is our clicked tile
@@ -229,7 +218,23 @@ grid.addEventListener('click', event => {
       }
     previousTarget = clicked;
     }
+})
+};
+
+//trigger the modal upon click
+//setTimeout to make modal disappear after set time
+//remove "start game" button so the player cannot add another modal/board
+//all methods called upon .start click
+$('.start').on('click', () => {
+  toggleModalOne();
+  setTimeout(toggleModalOne, 3000);
+  createBoard();
+  match();
+  resetGuesses();
+  gameGridListener();
+  $('.start').remove();
 });
+
 
 //MOAR MODALZ
 //second modal called once all matches are found
@@ -241,14 +246,13 @@ const toggleModalTwo = () => {
 };
 
 //create two more random words to add to modalTwo
-const randomWord2 = wordArray[Math.floor(Math.random()*wordArray.length)];
-const randomWord3 = wordArray[Math.floor(Math.random()*wordArray.length)];
+// const randomWord2 = ;
+// const randomWord3 = wordArray[Math.floor(Math.random()*wordArray.length)];
 
 //print random word and two others to second modal buttons
-$('.wordOne').append(randomWord2);
+$('.wordOne').append(wordArray[Math.floor(Math.random()*wordArray.length)]);
 $('.wordTwo').append(randomWord);
-$('.wordThree').append(randomWord3);
-
+$('.wordThree').append(wordArray[Math.floor(Math.random()*wordArray.length)]);
 
 //create congrats modal if player choses correct word
 const modalThree = document.querySelector(".modalThree")
@@ -264,14 +268,22 @@ const windowOnClick = () => {
 }
 
 $('.wordTwo').on('click', () => {
+  $('div.card.match').detach();
   toggleModalThree();
   toggleModalTwo();
 });
 
 $('.play-again').on('click', () => {
-  //loop back through another round
-})
+  setTimeout(toggleModalThree, 200);
+  toggleModalOne();
+  setTimeout(toggleModalOne, 3000);
+  createBoard();
+  match();
+  resetGuesses();
+  gameGridListener();
+});
 
-$('.no').on('click', () => {
-  //redirect to about page
-})
+
+// $('.no').on('click', () => {
+//   //redirect to about page
+// })
