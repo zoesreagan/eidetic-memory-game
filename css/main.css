@@ -1,19 +1,124 @@
 body {
-  background-color: rgba(89, 143, 115, 0.52)
+  background-color: #F5CA88;
+}
+h1, h2, h3, footer {
+  font-family: 'Questrial', sans-serif;
+  text-align: center;
+  font-weight: bold;
+  font-size: 4em;
+  line-height: 1em;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+
 }
 
-header {
-
+.inset-text {
+ color: rgba(107, 122, 143, 0.8);
+ text-shadow: 1px 2px 4px #FFDCA5, 0 0 0 #fff, 1px 2px 4px #FFDCA5;
 }
+
+
+h2 {
+  font-size: 1.5em;
+  line-height: 1em;
+  margin: 0 auto;
+}
+
+h3 {
+  font-size: 1em;
+  line-height: 1em;
+  margin: 0 auto;
+}
+
+.subheader, .score, .guess {
+  font-family: 'Roboto', sans-serif;
+  color: rgba(178, 153, 137, 0.8);
+  text-shadow: 1px 2px 4px #FFDCA5, 0 0 0 #fff, 1px 2px 4px #FFDCA5;
+}
+
 
 nav {
+  display: flex;
+  justify-content: center;
+}
+
+a {
+  display: flex;
+  border-spacing: 5px;
+  color: #09404C;
+  padding: 10px;
+  font-family: 'Questrial', sans-serif;
+  font-size: 1.5em;
+  text-decoration: none;
+  margin: 20px;
+}
+
+a::before,
+a::after {
+	border: 2px solid rgba(107, 122, 143, 0.8);
+	content: '';
+	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+	-moz-transition: -moz-transform 0.3s, opacity 0.3s;
+	transition: transform 0.3s, opacity 0.3s;
+}
+
+a::after {
+  border-color: rgba(178, 153, 137, 0.8);
+	opacity: 0;
+  text-decoration: none;
+	-webkit-transform: translateY(-7px) translateX(6px);
+	-moz-transform: translateY(-7px) translateX(6px);
+	transform: translateY(-7px) translateX(6px);
+}
+
+a:hover::before,
+a:focus::before {
+  opacity: 0;
+  text-decoration: none;
+	-webkit-transform: translateY(5px) translateX(-5px);
+	-moz-transform: translateY(5px) translateX(-5px);
+	transform: translateY(5px) translateX(-5px);
+}
+
+a:hover::after,
+a:focus::after {
+  opacity: 1;
+  text-decoration: none;
+	-webkit-transform: translateY(0px) translateX(0px);
+	-moz-transform: translateY(0px) translateX(0px);
+	transform: translateY(0px) translateX(0px);
+}
+
+.start {
+  font-family: "Questrial", sans-serif;
+  margin: 0 auto;
+  color: #DCC7AA;
+  font-size: 20px;
+  background: #09404C;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  text-shadow: 0px 0px 0px #FFDCA5;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
 
 }
+
+.start:hover {
+background: rgba(107, 122, 143, 0.8);
+text-decoration: none;
+}
+
 
 #scoreboard {
   height: auto;
   width: auto;
-  display: flex-wrap;
+  display: center;
   align-content: space-between;
   margin: 5px;
 
@@ -25,15 +130,16 @@ nav {
   transform-style: preserve-3d;
   margin: 5px;
   display: flex;
+  flex-wrap: wrap;
   pointer-events: all;
 }
 
 .grid {
-  padding: 10px;
-  margin: 10px auto;
+  padding: 5px;
+  margin: 0 auto;
   display: flex;
   height: 90%;
-  background-color: rgba(181, 207, 233, 0.62);
+  background-color: #DCC7AA
   justify-content: center;
   flex-wrap: wrap;
   pointer-events: none;
@@ -43,10 +149,10 @@ nav {
 .back,
 .front {
   padding: 5px;
+  margin: 5px;
   height: 150px;
   width: 150px;
 }
-
 
 .back,
 .front {
@@ -56,40 +162,62 @@ nav {
 
 .front {
   z-index: 2;
-  background-color: rgb(238, 161, 117)
+  background-color: #FFF0C6;
+  border-radius: 10px;
 }
 
 .back {
   margin: 0 auto;
+  padding: 0;
   transform: rotateY(180deg);
-  background-color: rgba(181, 207, 233, 0.62);
+  background-color: #F5CA88;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
+
 }
 
 .selected {
   transform: rotateY(180deg);
+  pointer-events: none;
 
+}
+.match {
+  pointer-events: none;
 }
 
 .match .front {
   display: none !important;
 }
 
+.guesses {
+
+}
+
+.congrats{
+
+}
+
+.round-score{
+
+}
+
+.todo {
+
+}
 
 footer {
-
+  float: left;
+  margin: 0 auto;
+  font-size: 1em;
+  color: #FFDCA5
 }
 
 /* MODAL STYLING */
 .modalOne,
 .modalTwo,
-.modalThree,
-.modalFour,
-.modalFive,
-.modalSix,
-.modalSeven {
+.modalThree {
+  margin: auto 0;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -105,11 +233,9 @@ footer {
 
 .modal-contentOne,
 .modal-contentTwo,
-.modal-contentThree,
-.modal-contentFour,
-.modal-contentFive,
-.modal-contentSix,
-.modal-contentSeven {
+.modal-contentThree {
+  font-family:
+  margin: auto 0;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -122,12 +248,7 @@ footer {
 
 .show-modalOne,
 .show-modalTwo,
-.show-modalThree,
-.show-modalFour,
-.show-modalFive,
-.show-modalSix,
-.show-modalSeven
- {
+.show-modalThree {
   opacity: 1;
   visibility: visible;
   transform: scale(1.0);

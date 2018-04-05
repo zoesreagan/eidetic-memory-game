@@ -2,6 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Questrial|Roboto" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <title>Eidetic Memory Game</title>
@@ -9,25 +10,30 @@
 
   <body>
 
-    <header>Eidetic Memory Game</header>
+    <header>
+      <h1 class = "inset-text">
+        EI·DET·IC<br>
+        īˈdedik/<br>
+      </h1>
+
+      <h2 class = "subheader">A MEMORY GAME</h2>
+    </header>
 
     <nav>
-      <a href="/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/how_to_play.html">How to Play</a><br>
-      <a href="/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/index.html">New Game</a>
+      <a class = "link" href="/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/how_to_play.html">How to Play</a>
     </nav>
 
-    <button class = "start">Start Game!</button>
 
      <div class= "modalOne">
        <div class = "modal-contentOne">
-        <h1>Do your best to remember this word:</h1>
+        <h3>Do your best to remember this word:</h3>
         <p class = "memoryWord"></p>
       </div>
     </div>
 
       <div class= "modalTwo">
         <div class = "modal-contentTwo">
-         <h1>Do you remember your word?</h1>
+         <h3>Do you remember your word?</h3>
          <h4>Select from this list:</h4>
          <button class= "wordOne"></button>
          <button class= "wordTwo"></button>
@@ -37,7 +43,7 @@
 
      <div class= "modalThree">
        <div class = "modal-contentThree">
-        <h1>Great job! :) </h1>
+        <h3 class = "congrats"> Great job! :) </h3>
         <p class = "round-score">Your score: </p>
         <p class = "guesses">Your guesses: </p>
         <p class = "todo"></p>
@@ -47,9 +53,12 @@
     </div>
 
     <div id= "scoreboard">
-      <h2>Scoreboard:</h2>
-      <h3>Guesses:</h3>
+      <h3 class = "score">Points:</h3>
+      <h3 class = "guess">Guesses:</h3>
     </div>
+
+    <button class = "start">START GAME</button>
+
 
     <div id= "game"></div>
 

@@ -161,7 +161,7 @@ const match = () => {
   const selected = document.querySelectorAll('.selected');
   selected.forEach(tile => {
     tile.classList.add('match');
-    if($('div.card.match').length === 2) {
+    if($('div.card.match').length === 24) {
       toggleModalTwo();
     }
   });
@@ -224,11 +224,11 @@ grid.addEventListener('click', event => {
         //run a setTimeout with the match function and designated delay
           setTimeout(match, delay);
           score++;
-          $('h2').text('Scoreboard: ' + score);
+          $('.score').text('Scoreboard: ' + score);
         }
       setTimeout(resetGuesses, delay);
     } guesses++;
-      $('h3').text('Guesses: ' + guesses)
+      $('.guess').text('Guesses: ' + guesses)
     previousTarget = clicked;
     }
   })
@@ -240,7 +240,7 @@ grid.addEventListener('click', event => {
 //all methods called upon .start click
   $('.start').on('click', () => {
     toggleModalOne();
-    setTimeout(toggleModalOne, 1000);
+    setTimeout(toggleModalOne, 5000);
     createBoard();
     match();
     resetGuesses();
@@ -278,9 +278,9 @@ $('.wordTwo').on('click', () => {
   score++;
   $('.round-score').text('Scoreboard: ' + score);
   $('.guesses').text('Guesses: ' + guesses);
-  if(guesses === score) {
+  if(guesses <= 24) {
     $('.todo').text("Congratulations! You have a great memory. Keep working on your speed and accuracy.")
-  } else if (guesses > score) {
+  } else if (guesses > 48) {
     $('.todo').text("Next time, try to reduce your guesses. Focusing on specific elements such as contrast or patterns can be helpful. Keep up your practice!")
   } else {
   };
