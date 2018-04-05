@@ -85,7 +85,11 @@ footer {
 /* MODAL STYLING */
 .modalOne,
 .modalTwo,
-.modalThree {
+.modalThree,
+.modalFour,
+.modalFive,
+.modalSix,
+.modalSeven {
   position: fixed;
   z-index: 1;
   left: 0;
@@ -101,7 +105,11 @@ footer {
 
 .modal-contentOne,
 .modal-contentTwo,
-.modal-contentThree {
+.modal-contentThree,
+.modal-contentFour,
+.modal-contentFive,
+.modal-contentSix,
+.modal-contentSeven {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -114,12 +122,14 @@ footer {
 
 .show-modalOne,
 .show-modalTwo,
-.show-modalThree {
+.show-modalThree,
+.show-modalFour,
+.show-modalFive,
+.show-modalSix,
+.show-modalSeven
+ {
   opacity: 1;
   visibility: visible;
   transform: scale(1.0);
   transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
 }
-
-
-.

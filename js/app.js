@@ -3,7 +3,7 @@ console.log("this is an eidetic memory game");
 //start button that begins the round after player has read the instructions
 //start button will ultimately trigger the modal and display the board.
 
-//need to create a modal that appears after start button is clicked
+//create a modal that appears after start button is clicked
 //tie it to event listener
 //needs to time out after 3 seconds and call the gameGrid function
 
@@ -22,15 +22,23 @@ const wordArray1 = [
   "breathe",
   "shoulder",
   "revoke",
-  "application"
+  "application",
+  "copper",
+  "unite",
+  "explain",
+  "fold"
 ];
 
 const wordArray2 = [
   "toast",
   "affinity",
   "replace",
-  "delicate"
-]
+  "delicate",
+  "intention",
+  "thesis",
+  "faint",
+  "tent"
+];
 
 //choose random word from above wordArray (need to figure out how not to repeat words)
 const randomWord1 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
@@ -47,46 +55,46 @@ const tilesArray = [{
   'name': 'butterfly',
   'img' : 'img/butterfly.jpeg',
 },
-// {
-//   'name' : 'caterpillar',
-//   'img' : 'img/caterpillar.jpeg',
-// },
-// {
-//   'name' : 'elephant',
-//   'img' : 'img/elephant.jpg',
-// },
-// {
-//   'name' : 'heron',
-//   'img' : 'img/heron.jpg',
-// },
-// {
-//   'name' : 'horse',
-//   'img' : 'img/horse.jpg',
-// },
-// {
-//   'name' : 'ladybug',
-//   'img' : 'img/ladybug.jpg',
-// },
-// {
-//   'name' : 'loon',
-//   'img' : 'img/loon.jpg',
-// },
-// {
-//   'name' : 'praying-mantis',
-//   'img' : 'img/prayingmantis.jpg',
-// },
-// {
-//   'name' : 'seal',
-//   'img' : 'img/seal.jpg',
-// },
-// {
-//   'name' : 'snails',
-//   'img' : 'img/snails.jpg',
-// },
-// {
-//   'name' : 'swan',
-//   'img' : 'img/swan.jpg',
-// },
+{
+  'name' : 'caterpillar',
+  'img' : 'img/caterpillar.jpeg',
+},
+{
+  'name' : 'elephant',
+  'img' : 'img/elephant.jpg',
+},
+{
+  'name' : 'heron',
+  'img' : 'img/heron.jpg',
+},
+{
+  'name' : 'horse',
+  'img' : 'img/horse.jpg',
+},
+{
+  'name' : 'ladybug',
+  'img' : 'img/ladybug.jpg',
+},
+{
+  'name' : 'loon',
+  'img' : 'img/loon.jpg',
+},
+{
+  'name' : 'praying-mantis',
+  'img' : 'img/prayingmantis.jpg',
+},
+{
+  'name' : 'seal',
+  'img' : 'img/seal.jpg',
+},
+{
+  'name' : 'snails',
+  'img' : 'img/snails.jpg',
+},
+{
+  'name' : 'swan',
+  'img' : 'img/swan.jpg',
+},
 ];
 
 //duplicate the first tilesArray so that the array has an available match
@@ -102,6 +110,7 @@ let count = 0;
 let previousTarget = null;
 let delay = 1000;
 let score = 0;
+let guesses = 0;
 
 // display all twelve tiles
 const game = document.getElementById('game');
@@ -152,7 +161,7 @@ const match = () => {
   const selected = document.querySelectorAll('.selected');
   selected.forEach(tile => {
     tile.classList.add('match');
-    if($('div.card.match').length === 4) {
+    if($('div.card.match').length === 2) {
       toggleModalTwo();
     }
   });
@@ -218,31 +227,29 @@ grid.addEventListener('click', event => {
           $('h2').text('Scoreboard: ' + score);
         }
       setTimeout(resetGuesses, delay);
-      }
+    } guesses++;
+      $('h3').text('Guesses: ' + guesses)
     previousTarget = clicked;
     }
   })
 };
 
-
-
 //trigger the modal upon click
 //setTimeout to make modal disappear after set time
 //remove "start game" button so the player cannot add another modal/board
 //all methods called upon .start click
+  $('.start').on('click', () => {
+    toggleModalOne();
+    setTimeout(toggleModalOne, 1000);
+    createBoard();
+    match();
+    resetGuesses();
+    gameGridListener();
+    $('.memoryWord').append(randomWord1);
+    $('.start').remove();
+  });
 
-$('.start').on('click', () => {
-  toggleModalOne();
-  setTimeout(toggleModalOne, 1000);
-  createBoard();
-  match();
-  resetGuesses();
-  gameGridListener();
-  $('p').append(randomWord1);
-  $('.start').remove();
-});
 
-//MOAR MODALZ
 //second modal called once all matches are found
 
 const modalTwo = document.querySelector(".modalTwo")
@@ -252,7 +259,7 @@ const toggleModalTwo = () => {
 };
 
 
-//print random word and two others to second modal buttons
+//print random word and two others to modal buttons
 $('.wordOne').append(wordArray2[Math.floor(Math.random()*wordArray2.length)]);
 $('.wordTwo').append(randomWord1);
 $('.wordThree').append(wordArray2[Math.floor(Math.random()*wordArray2.length)]);
@@ -263,48 +270,28 @@ const toggleModalThree = () => {
   modalThree.classList.toggle("show-modalThree")
 };
 
+//Modal Three
 //create click event for correct button selection
+//create a final congrats modal with score and guesses appended
 $('.wordTwo').on('click', () => {
   $('div.card.match').detach();
   score++;
-  $('h2').text('Scoreboard: ' + score);
+  $('.round-score').text('Scoreboard: ' + score);
+  $('.guesses').text('Guesses: ' + guesses);
+  if(guesses === score) {
+    $('.todo').text("Congratulations! You have a great memory. Keep working on your speed and accuracy.")
+  } else if (guesses > score) {
+    $('.todo').text("Next time, try to reduce your guesses. Focusing on specific elements such as contrast or patterns can be helpful. Keep up your practice!")
+  } else {
+  };
   toggleModalThree();
-  toggleModalTwo();
 });
 
 
-//Round 2
-
-let randomWord2 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
-
-$('.play-again').on('click', () => {
-  setTimeout(toggleModalThree, 200);
-  $('p').text(randomWord2);
-  toggleModalOne();
-  setTimeout(toggleModalOne, 3000);
-  createBoard();
-  match();
-  resetGuesses();
-  gameGridListener();
+$('.restart').on('click', () => {
+  location.reload();
 });
 
 
-// $('.no').on('click', () => {
-//   //redirect to about page
-// })
 
-
-//Round 3
-
-// let randomWord3 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
-//
-// $('.play-again').on('click', () => {
-//   setTimeout(toggleModalThree, 200);
-//   $('p').text(randomWord3);
-//   toggleModalOne();
-//   setTimeout(toggleModalOne, 3000);
-//   createBoard();
-//   match();
-//   resetGuesses();
-//   gameGridListener();
-// });
+//add content to other pages and link
