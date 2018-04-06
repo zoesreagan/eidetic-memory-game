@@ -1,24 +1,24 @@
 body {
-  background-color: #F5CA88;
+  background-color: #FFE1C6;
+  z-index: -2;
 }
+
 h1, h2, h3, footer {
   font-family: 'Questrial', sans-serif;
   text-align: center;
   font-weight: bold;
-  font-size: 4em;
+  font-size: 3.5em;
   line-height: 1em;
   display: flex;
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
-
 }
 
 .inset-text {
- color: rgba(107, 122, 143, 0.8);
- text-shadow: 1px 2px 4px #FFDCA5, 0 0 0 #fff, 1px 2px 4px #FFDCA5;
+  color: rgba(9, 64, 76, 0.7);
+  text-shadow: 1px 2px 4px #FFFCFA, 0 0 0 #fff, 1px 2px 4px #FFFCFA;
 }
-
 
 h2 {
   font-size: 1.5em;
@@ -32,27 +32,62 @@ h3 {
   margin: 0 auto;
 }
 
-.subheader, .score, .guess {
+.subheader {
   font-family: 'Roboto', sans-serif;
-  color: rgba(178, 153, 137, 0.8);
-  text-shadow: 1px 2px 4px #FFDCA5, 0 0 0 #fff, 1px 2px 4px #FFDCA5;
+  margin: 0px 10px 15px 10px;
+  color: rgba(85, 119, 125, 0.8);
+  text-shadow: 1px 2px 4px #FFFCFA, 0 0 0 #fff, 1px 2px 4px #FFFCFA;
 }
-
 
 nav {
   display: flex;
   justify-content: center;
 }
 
+
+.start,
+.wordOne,
+.wordTwo,
+.wordThree,
+.try-again,
+.restart {
+  font-family: "Questrial", sans-serif;
+  margin: 0 auto;
+  display: block;
+  color: #DCC7AA;
+  font-size: 20px;
+  background: #09404C;
+  padding: 10px 20px 10px 20px;
+  text-decoration: none;
+  -webkit-border-radius: 10;
+  -moz-border-radius: 10;
+  border-radius: 10px;
+  text-shadow: 0px 0px 0px #FFDCA5;
+  -webkit-box-shadow: 0px 1px 3px #666666;
+  -moz-box-shadow: 0px 1px 3px #666666;
+  box-shadow: 0px 1px 3px #666666;
+}
+
+.start:hover,
+.wordOne:hover,
+.wordTwo:hover,
+.wordThree:hover,
+.try-again:hover,
+.restart:hover {
+background: rgba(107, 122, 143, 0.8);
+text-decoration: none;
+}
+
+
 a {
   display: flex;
   border-spacing: 5px;
   color: #09404C;
-  padding: 10px;
+  padding: 5px;
   font-family: 'Questrial', sans-serif;
-  font-size: 1.5em;
+  font-size: 1.25em;
   text-decoration: none;
-  margin: 20px;
+  margin: 15px;
 }
 
 a::before,
@@ -91,29 +126,20 @@ a:focus::after {
 	transform: translateY(0px) translateX(0px);
 }
 
-.start {
-  font-family: "Questrial", sans-serif;
-  margin: 0 auto;
-  color: #DCC7AA;
-  font-size: 20px;
-  background: #09404C;
-  padding: 10px 20px 10px 20px;
-  text-decoration: none;
-  -webkit-border-radius: 10;
-  -moz-border-radius: 10;
-  border-radius: 10px;
-  text-shadow: 0px 0px 0px #FFDCA5;
-  -webkit-box-shadow: 0px 1px 3px #666666;
-  -moz-box-shadow: 0px 1px 3px #666666;
-  box-shadow: 0px 1px 3px #666666;
 
+.score, .guess {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.25em;
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 10px;
+  color: rgba(85, 119, 125, 0.8);
+  text-shadow: 1px 1px 1px #FFFCFA, 0 0 0 #fff, 1px 1px 1px #FFFCFA;
 }
 
-.start:hover {
-background: rgba(107, 122, 143, 0.8);
-text-decoration: none;
+#game {
+  pointer-events: none;
 }
-
 
 #scoreboard {
   height: auto;
@@ -142,8 +168,18 @@ text-decoration: none;
   background-color: #DCC7AA
   justify-content: center;
   flex-wrap: wrap;
+  user-select: none;
   pointer-events: none;
 }
+
+.grid .selected {
+  user-select: none;
+  pointer-events: none;
+}
+
+/* body < .selected {
+  pointer-events: none;
+} */
 
 .card,
 .back,
@@ -162,15 +198,16 @@ text-decoration: none;
 
 .front {
   z-index: 2;
-  background-color: #FFF0C6;
+  background-color: #DDF4FF;
   border-radius: 10px;
 }
 
 .back {
   margin: 0 auto;
   padding: 0;
+  border-radius: 10px;
   transform: rotateY(180deg);
-  background-color: #F5CA88;
+  background-color: #FFE1C6;
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
@@ -188,35 +225,29 @@ text-decoration: none;
 
 .match .front {
   display: none !important;
+  pointer-events: none;
 }
 
-.guesses {
-
-}
-
-.congrats{
-
-}
-
-.round-score{
-
-}
-
-.todo {
-
+.instructions {
+  font-family: 'Roboto', sans-serif;
+  font-size: 1em;
+  color: #093F4C;
+  text-align: center;
+  margin: auto 0;
 }
 
 footer {
-  float: left;
-  margin: 0 auto;
+  display: flex;
+  margin: 20px auto;
   font-size: 1em;
-  color: #FFDCA5
+  color: #093F4C
 }
 
 /* MODAL STYLING */
 .modalOne,
 .modalTwo,
-.modalThree {
+.modalThree,
+.modalFour {
   margin: auto 0;
   position: fixed;
   z-index: 1;
@@ -224,7 +255,7 @@ footer {
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(9, 64, 76, 0.7);
   opacity: 0;
   visibility: hidden;
   transform: scale(1.1);
@@ -233,22 +264,25 @@ footer {
 
 .modal-contentOne,
 .modal-contentTwo,
-.modal-contentThree {
-  font-family:
+.modal-contentThree,
+.modal-contentFour {
+  font-family: Roboto, sans-serif;
+  color: #09404C;
+  font-size: 1.5em;
   margin: auto 0;
   position: absolute;
-  top: 50%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: white;
+  background-color: #FFEEE0;
   padding: 1rem 1.5rem;
   width: 24rem;
-  border-radius: 0.5rem;
 }
 
 .show-modalOne,
 .show-modalTwo,
-.show-modalThree {
+.show-modalThree,
+.show-modalFour {
   opacity: 1;
   visibility: visible;
   transform: scale(1.0);

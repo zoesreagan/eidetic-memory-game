@@ -24,9 +24,10 @@ const wordArray1 = [
   "revoke",
   "application",
   "copper",
-  "unite",
-  "explain",
-  "fold"
+  "arrest",
+  "singer",
+  "history",
+  "urgency"
 ];
 
 const wordArray2 = [
@@ -35,9 +36,22 @@ const wordArray2 = [
   "replace",
   "delicate",
   "intention",
+  "speech",
+  "fluctuation",
+  "congress"
+];
+
+const wordArray3 = [
   "thesis",
   "faint",
-  "tent"
+  "tent",
+  "unite",
+  "explain",
+  "fold",
+  "extract",
+  "theater",
+  "apology",
+  "cottage"
 ];
 
 //choose random word from above wordArray (need to figure out how not to repeat words)
@@ -48,52 +62,36 @@ const randomWord1 = wordArray1[Math.floor(Math.random()*wordArray1.length)];
 //create an array of tiles with name and img attached
 
 const tilesArray = [{
-  'name' : 'bees',
-  'img' : 'img/bees.jpg',
+  'name' : 'hf1',
+  'img' : 'img/hf_1.jpg',
 },
 {
-  'name': 'butterfly',
-  'img' : 'img/butterfly.jpeg',
+  'name': 'hf2',
+  'img' : 'img/hf_2.jpg',
 },
 {
-  'name' : 'caterpillar',
-  'img' : 'img/caterpillar.jpeg',
+  'name' : 'hf3',
+  'img' : 'img/hf_3.jpg',
 },
 {
-  'name' : 'elephant',
-  'img' : 'img/elephant.jpg',
+  'name' : 'hf4',
+  'img' : 'img/hf_4.jpg',
 },
 {
-  'name' : 'heron',
-  'img' : 'img/heron.jpg',
+  'name' : 'hf5',
+  'img' : 'img/hf_5.jpg',
 },
 {
-  'name' : 'horse',
-  'img' : 'img/horse.jpg',
+  'name' : 'hf6',
+  'img' : 'img/hf_6.jpg',
 },
 {
-  'name' : 'ladybug',
-  'img' : 'img/ladybug.jpg',
+  'name' : 'hf7',
+  'img' : 'img/hf_7.jpg',
 },
 {
-  'name' : 'loon',
-  'img' : 'img/loon.jpg',
-},
-{
-  'name' : 'praying-mantis',
-  'img' : 'img/prayingmantis.jpg',
-},
-{
-  'name' : 'seal',
-  'img' : 'img/seal.jpg',
-},
-{
-  'name' : 'snails',
-  'img' : 'img/snails.jpg',
-},
-{
-  'name' : 'swan',
-  'img' : 'img/swan.jpg',
+  'name' : 'hf8',
+  'img' : 'img/hf_8.jpg',
 },
 ];
 
@@ -108,7 +106,7 @@ let firstGuess = '';
 let secondGuess = '';
 let count = 0;
 let previousTarget = null;
-let delay = 1000;
+let delay = 500;
 let score = 0;
 let guesses = 0;
 
@@ -161,7 +159,7 @@ const match = () => {
   const selected = document.querySelectorAll('.selected');
   selected.forEach(tile => {
     tile.classList.add('match');
-    if($('div.card.match').length === 24) {
+    if($('div.card.match').length === 16) {
       toggleModalTwo();
     }
   });
@@ -193,9 +191,11 @@ grid.addEventListener('click', event => {
 //but we don't want the grid itself to be selected, only the divs
   const clicked = event.target;
 
-  if (clicked.parentNode.classList.contains('.grid') ||
-      clicked === previousTarget ||
-      clicked.parentNode.classList.contains('selected')
+  if (
+    clicked.parentNode.classList.contains('grid') ||
+    clicked === previousTarget ||
+    clicked.parentNode.classList.contains('selected') ||
+    clicked.parentNode.classList.contains('match')
   ) {
     return;
   }
@@ -224,7 +224,7 @@ grid.addEventListener('click', event => {
         //run a setTimeout with the match function and designated delay
           setTimeout(match, delay);
           score++;
-          $('.score').text('Scoreboard: ' + score);
+          $('.score').text('Points: ' + score);
         }
       setTimeout(resetGuesses, delay);
     } guesses++;
@@ -234,13 +234,17 @@ grid.addEventListener('click', event => {
   })
 };
 
+// $('.grid').click(function() => {
+//   $('.selected').off('click');
+// });
+
 //trigger the modal upon click
 //setTimeout to make modal disappear after set time
 //remove "start game" button so the player cannot add another modal/board
 //all methods called upon .start click
   $('.start').on('click', () => {
     toggleModalOne();
-    setTimeout(toggleModalOne, 5000);
+    setTimeout(toggleModalOne, 1000);
     createBoard();
     match();
     resetGuesses();
@@ -262,7 +266,27 @@ const toggleModalTwo = () => {
 //print random word and two others to modal buttons
 $('.wordOne').append(wordArray2[Math.floor(Math.random()*wordArray2.length)]);
 $('.wordTwo').append(randomWord1);
-$('.wordThree').append(wordArray2[Math.floor(Math.random()*wordArray2.length)]);
+$('.wordThree').append(wordArray3[Math.floor(Math.random()*wordArray3.length)]);
+
+const modalFour = document.querySelector(".modalFour")
+const toggleModalFour = () => {
+  modalFour.classList.toggle("show-modalFour")
+}
+
+$('.wordOne').on('click', () => {
+  toggleModalFour();
+  toggleModalTwo();
+})
+
+$('.wordThree').on('click', () => {
+  toggleModalFour();
+  toggleModalTwo();
+})
+
+$('.try-again').on('click', () => {
+  toggleModalTwo();
+  toggleModalFour();
+})
 
 //create congrats modal if player choses correct word
 const modalThree = document.querySelector(".modalThree")
@@ -270,17 +294,18 @@ const toggleModalThree = () => {
   modalThree.classList.toggle("show-modalThree")
 };
 
+
 //Modal Three
 //create click event for correct button selection
 //create a final congrats modal with score and guesses appended
 $('.wordTwo').on('click', () => {
   $('div.card.match').detach();
   score++;
-  $('.round-score').text('Scoreboard: ' + score);
-  $('.guesses').text('Guesses: ' + guesses);
-  if(guesses <= 24) {
+  $('.round-score').text('Your final score: ' + score);
+  $('.guesses').text('How many guesses you made: ' + guesses);
+  if(guesses <= 25) {
     $('.todo').text("Congratulations! You have a great memory. Keep working on your speed and accuracy.")
-  } else if (guesses > 48) {
+  } else if (guesses > 25) {
     $('.todo').text("Next time, try to reduce your guesses. Focusing on specific elements such as contrast or patterns can be helpful. Keep up your practice!")
   } else {
   };
@@ -291,7 +316,3 @@ $('.wordTwo').on('click', () => {
 $('.restart').on('click', () => {
   location.reload();
 });
-
-
-
-//add content to other pages and link

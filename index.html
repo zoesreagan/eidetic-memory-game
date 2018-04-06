@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="css/main.css">
-    <link href="https://fonts.googleapis.com/css?family=Questrial|Roboto" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial|Roboto|Covered+By+Your+Grace" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <meta charset="utf-8">
     <title>Eidetic Memory Game</title>
@@ -17,10 +17,13 @@
       </h1>
 
       <h2 class = "subheader">A MEMORY GAME</h2>
+
+      <button class = "start">START GAME</button>
+
     </header>
 
     <nav>
-      <a class = "link" href="/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/how_to_play.html">How to Play</a>
+
     </nav>
 
 
@@ -34,7 +37,6 @@
       <div class= "modalTwo">
         <div class = "modal-contentTwo">
          <h3>Do you remember your word?</h3>
-         <h4>Select from this list:</h4>
          <button class= "wordOne"></button>
          <button class= "wordTwo"></button>
          <button class= "wordThree"></button>
@@ -43,26 +45,32 @@
 
      <div class= "modalThree">
        <div class = "modal-contentThree">
-        <h3 class = "congrats"> Great job! :) </h3>
-        <p class = "round-score">Your score: </p>
-        <p class = "guesses">Your guesses: </p>
+        <h3 class = "congrats"> Great job!</h3>
+        <p class = "round-score"></p>
+        <p class = "guesses"></p>
         <p class = "todo"></p>
-        <button class= "restart">New game?</button>
-        <button class= "no">No thanks.</button>
+        <button class= "restart">Play again?</button>
       </div>
     </div>
 
+    <div class= "modalFour">
+      <div class = "modal-contentFour">
+       <h3>Not Quite!</h3>
+       <button class = "try-again">Try Again!</button>
+     </div>
+   </div>
+
     <div id= "scoreboard">
-      <h3 class = "score">Points:</h3>
+      <a class = "link" href="/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/how_to_play.html">How to Play</a>
+      <h3 class = "score">Points:<p></h3>
+
       <h3 class = "guess">Guesses:</h3>
     </div>
 
-    <button class = "start">START GAME</button>
-
-
     <div id= "game"></div>
 
-    <footer>Images by Eric Carle & Charley Harper</footer>
+    <footer>Images by Helen Frankenthaler</footer>
+
   </body>
 
 <script type="text/javascript" src="js/app.js"></script>
