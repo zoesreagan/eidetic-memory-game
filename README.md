@@ -31,16 +31,16 @@ The game also employs a number of modals, which asks the player to remember, and
 
 ## Wireframes
 ### Initial Modal
-(/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_1.png)
+![alt text](/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_1.png)
 
 ### Gameboard
-(/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_2.png)
+![alt text](/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_2.png)
 
 ### Recall modal
-(/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_3.png)
+![alt text](/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_3.png)
 
 ### Congratulations modal
-(/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_4.png)
+![alt text](/Users/zoeskye/turtles/wdi-11-project-1/wdi-11-project-1/edetic-memory-game/eidetic-memory-game/img/wireframe_4.png)
 
 ## Problem and solution
 A major bug throughout was the ability to "select" the parent grid element as well as the "tile". This was fixed using the Node.contains() method, which returns a Boolean value indicating whether or not a node is a descendant of a given node.
