@@ -177,10 +177,6 @@ a:focus::after {
   pointer-events: none;
 }
 
-/* body < .selected {
-  pointer-events: none;
-} */
-
 .card,
 .back,
 .front {

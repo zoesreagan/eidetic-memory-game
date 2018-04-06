@@ -234,9 +234,6 @@ grid.addEventListener('click', event => {
   })
 };
 
-// $('.grid').click(function() => {
-//   $('.selected').off('click');
-// });
 
 //trigger the modal upon click
 //setTimeout to make modal disappear after set time
@@ -312,7 +309,7 @@ $('.wordTwo').on('click', () => {
   toggleModalThree();
 });
 
-
+//reload page once player selects
 $('.restart').on('click', () => {
   location.reload();
 });

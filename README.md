@@ -1,12 +1,13 @@
-# eidetic-memory-game
---Initial functionality--
+# Eidetic Memory Game
 
+## About
 This is a simple color matching memory game with a neat-o twist!
 
 Eidetic memory is the ability to recall information from memory after only a few moments of exposure without using an mnemonic device.
 
 Visuospatial processing diminishes with age and the loss of this skill is a major component of cognitive decline.
 
+## User stories
 This game will test the player's ability to recall a word after a color matching game.
 
 Upon starting the game, the screen will display a word for a few seconds.
@@ -19,17 +20,21 @@ The player must match all eight pairs of characters.
 
 Once all eight pairs are matched, the board will disappear and will be replaced with a menu of words.
 
-The player must select the word that appeared initially in order to "win" the round. If the player does not select the correct word, the game restarts with the original word and 16 tiles.
+The player must select the word that appeared initially in order to "win" the round. If the incorrect word is chosen, the game will indicate this to the player. If the correct word is chosen, the game will then ask if the player wants to play again.
 
 
-!(text)[link]
+## Describe the tech
+The tech behind this game is primarily vanilla Javascript with some jQuery used to navigate the DOM. Essentially, there are 16 selectable divs; logic checks if the cards a match; if so, they are a assigned a 'match' class and are then removed from view.
 
---Increased functionality--
+The game also employs a number of modals, which asks the player to remember, and then recall the word from three available options.
 
-Rounds will increase in difficulty.
+## Wireframes
+Balsalmiq wireframes
 
-Rounds two will increase the tiles to be matched on the game board. Player will need to remember initial word after matching 16 pairs from 32 tiles.
+## Problem and solution
+A major bug throughout was the ability to "select" the parent grid element as well as the "tile". This was fixed using the Node.contains() method, which returns a Boolean value indicating whether or not a node is a descendant of a given node.
 
-Round three will ask the player to remember an additional word and have the player match 16 pairs from 32 tiles.
+In the game functionality, the class "selected" should NOT be added to the "grid" element, so the Node.contains() method returns nothing, thus ensuring the grid element cannot be clicked as a player selection.
 
-Round four will ask the player to remember both words and match 32 pairs.
+## Future functionality
+In the future, it would be nice to build in additional rounds and create logic that added more words to remember and more tiles to the board.
