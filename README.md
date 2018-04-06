@@ -1,11 +1,12 @@
 # Eidetic Memory Game
 
 ## About
-This is a simple color matching memory game with a neat-o twist!
+This is a simple color matching memory game with an added word recall challenge.
 
 Eidetic memory is the ability to recall information from memory after only a few moments of exposure without using an mnemonic device.
 
 Visuospatial processing diminishes with age and the loss of this skill is a major component of cognitive decline.
+Perhaps training this "memory" can help ward off the loss of visuospatial processing we experience with aging.
 
 ## User stories
 This game will test the player's ability to recall a word after a color matching game.
